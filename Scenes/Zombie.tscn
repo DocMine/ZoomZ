@@ -1,0 +1,99 @@
+[gd_scene load_steps=11 format=3 uid="uid://cj2klxf7gpavp"]
+
+[ext_resource type="Script" path="res://Scripts/Zombie.gd" id="1_23l53"]
+[ext_resource type="Texture2D" uid="uid://bbtggokdumg3u" path="res://Assets/Zombie 1/zoimbie1_hold.png" id="1_jr3kl"]
+[ext_resource type="Texture2D" uid="uid://djkacvnt3rscy" path="res://Assets/Zombie 1/zoimbie1_stand.png" id="2_phg4o"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_heccm"]
+radius = 30.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u3va8"]
+atlas = ExtResource("1_jr3kl")
+region = Rect2(0, 0, 35, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ct1xa"]
+atlas = ExtResource("2_phg4o")
+region = Rect2(0, 0, 33, 43)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_olurp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u3va8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ct1xa")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wem5w"]
+size = Vector2(26, 62)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0w5vj"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+gravity = Vector3(0, 300, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 2.0
+scale_max = 20.0
+color = Color(0, 0.305882, 0.152941, 1)
+hue_variation_min = -0.2
+hue_variation_max = 0.2
+attractor_interaction_enabled = false
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_br4d1"]
+radius = 482.066
+
+[node name="Zombie" type="CharacterBody2D" groups=["zombie"]]
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("1_23l53")
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_heccm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Shape"]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_olurp")
+animation = &"Walk"
+autoplay = "Walk"
+frame = 1
+frame_progress = 0.13409
+
+[node name="Hit_Box" type="Area2D" parent="Shape"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shape/Hit_Box"]
+position = Vector2(29, 0)
+shape = SubResource("RectangleShape2D_wem5w")
+one_way_collision_margin = 49.3
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Shape"]
+position = Vector2(33, 0)
+emitting = false
+amount = 32
+process_material = SubResource("ParticleProcessMaterial_0w5vj")
+lifetime = 0.8
+one_shot = true
+visibility_rect = Rect2(0, 0, 0, 0)
+
+[node name="HitTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+debug_enabled = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -20.0
+
+[node name="DetectArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectArea"]
+shape = SubResource("CircleShape2D_br4d1")

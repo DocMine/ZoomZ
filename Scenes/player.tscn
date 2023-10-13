@@ -1,0 +1,68 @@
+[gd_scene load_steps=8 format=3 uid="uid://chmmavhhxehk8"]
+
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_r6be8"]
+[ext_resource type="Texture2D" uid="uid://dtxj4k4xm44rn" path="res://Assets/Hitman 1/hitman1_stand.png" id="2_nhf7j"]
+[ext_resource type="Texture2D" uid="uid://cygmekh1qd6e2" path="res://Assets/Hitman 1/hitman1_silencer.png" id="3_mbue4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ij0if"]
+radius = 40.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xf6nn"]
+atlas = ExtResource("2_nhf7j")
+region = Rect2(0, 0, 33, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_37iha"]
+atlas = ExtResource("3_mbue4")
+region = Rect2(0, 0, 54, 43)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wd0bd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xf6nn")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_37iha")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+position = Vector2(454, 334)
+motion_mode = 1
+script = ExtResource("1_r6be8")
+
+[node name="shape" type="CollisionShape2D" parent="."]
+position = Vector2(6, -24)
+shape = SubResource("CircleShape2D_ij0if")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="shape"]
+position = Vector2(22, -1)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_wd0bd")
+animation = &"walk"
+autoplay = "walk"
+
+[node name="muzzle" type="Node2D" parent="shape"]
+position = Vector2(73, 19)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(100, 0)
+offset_left = -46.0
+offset_top = -97.0
+offset_right = 54.0
+offset_bottom = -70.0
+step = 1.0
+value = 5.0
+rounded = true
+
+[node name="FreezeTgimer" type="Timer" parent="."]

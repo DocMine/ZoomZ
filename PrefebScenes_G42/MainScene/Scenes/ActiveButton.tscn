@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://bix06d4ma4k8a"]
+
+[ext_resource type="Script" path="res://PrefebScenes_G42/MainScene/Scripts/ActiveButton.gd" id="1_535wv"]
+[ext_resource type="FontFile" uid="uid://dp3k78u043ioq" path="res://PrefebScenes_G42/Font/VonwaonBitmap-16px.ttf" id="1_wlx3k"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_56ybq"]
+bg_color = Color(0.137255, 0.137255, 0.137255, 0.921569)
+
+[node name="Button" type="Button"]
+custom_minimum_size = Vector2(200, 60)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -31.0
+offset_top = -15.5
+offset_right = 31.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_wlx3k")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_56ybq")
+button_mask = 3
+text = "Button"
+expand_icon = true
+script = ExtResource("1_535wv")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

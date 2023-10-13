@@ -1,0 +1,75 @@
+[gd_scene load_steps=4 format=3 uid="uid://c1b0sb6klvopy"]
+
+[ext_resource type="PackedScene" uid="uid://bix06d4ma4k8a" path="res://PrefebScenes_G42/MainScene/Scenes/ActiveButton.tscn" id="1_6atbj"]
+[ext_resource type="Texture2D" uid="uid://cgnna156anwtg" path="res://PrefebScenes_G42/MainScene/Assets/bili.jpg" id="1_us0u7"]
+[ext_resource type="Texture2D" uid="uid://cbrl0f36raxrc" path="res://PrefebScenes_G42/MainScene/Assets/we.jpg" id="2_b8sv0"]
+
+[node name="AuthorPage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BG" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Intro" type="Label" parent="."]
+layout_mode = 0
+offset_left = 328.0
+offset_top = 81.0
+offset_right = 1543.0
+offset_bottom = 187.0
+theme_override_font_sizes/font_size = 24
+text = "谢谢体验我的游戏~
+你的支持对我很重要！
+欢迎关注我的Bilibili账号点赞投币支持，或者添加微信向我提出建议：）"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -761.0
+offset_top = -308.0
+offset_right = 761.0
+offset_bottom = 391.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="biliBiliQR" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+texture = ExtResource("1_us0u7")
+expand_mode = 3
+
+[node name="WechatQR" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+texture = ExtResource("2_b8sv0")
+expand_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -346.0
+offset_top = -122.0
+offset_right = -42.0
+offset_bottom = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Button" parent="VBoxContainer" instance=ExtResource("1_6atbj")]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Back"

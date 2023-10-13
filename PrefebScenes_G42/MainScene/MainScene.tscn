@@ -1,0 +1,118 @@
+[gd_scene load_steps=9 format=3 uid="uid://bvi2h4kp01xc"]
+
+[ext_resource type="Texture2D" uid="uid://6dmhac2y4xo6" path="res://Assets/level.jpg" id="1_e2yg8"]
+[ext_resource type="Texture2D" uid="uid://b0kk75c6suquo" path="res://PrefebScenes_G42/MainScene/Assets/fog2.png" id="2_2r258"]
+[ext_resource type="Texture2D" uid="uid://fbfqervlob2y" path="res://Assets/sq.png" id="4_7ekm3"]
+[ext_resource type="Script" path="res://PrefebScenes_G42/MainScene/Scripts/ButtonFounctions.gd" id="4_kot2p"]
+[ext_resource type="AudioStream" uid="uid://bh58e6k1r2ok2" path="res://Audios/cruising-down-8bit-lane-159615.mp3" id="5_i1yn4"]
+[ext_resource type="PackedScene" uid="uid://bix06d4ma4k8a" path="res://PrefebScenes_G42/MainScene/Scenes/ActiveButton.tscn" id="5_psf1s"]
+
+[sub_resource type="Curve" id="Curve_ofblb"]
+min_value = 1.0
+max_value = 3.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 3), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_83clr"]
+colors = PackedColorArray(0.965345, 0.807635, 0.578064, 1, 1, 1, 1, 1)
+
+[node name="MainScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BG" type="TextureRect" parent="."]
+modulate = Color(0.317647, 0.317647, 0.317647, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_e2yg8")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="."]
+modulate = Color(0.611765, 0.611765, 0.611765, 1)
+layout_mode = 0
+offset_left = 210.0
+offset_top = 150.0
+offset_right = 660.0
+offset_bottom = 287.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 100
+text = "Zoon Zed"
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(-156, 62)
+lifetime = 10.0
+preprocess = 100.0
+explosiveness = 0.15
+fixed_fps = 60
+texture = ExtResource("2_2r258")
+emission_shape = 1
+emission_sphere_radius = 80.15
+gravity = Vector2(60, 2)
+initial_velocity_min = 10.0
+initial_velocity_max = 30.0
+angular_velocity_min = -30.0
+angular_velocity_max = 30.0
+linear_accel_min = -39.06
+damping_min = 5.579
+damping_max = 14.591
+angle_min = -146.0
+angle_max = 142.1
+scale_amount_min = 3.0
+scale_amount_max = 5.0
+scale_amount_curve = SubResource("Curve_ofblb")
+color = Color(1, 1, 1, 0.478431)
+color_ramp = SubResource("Gradient_83clr")
+
+[node name="Buttons_Vbox" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(300, 500)
+layout_mode = 0
+offset_left = 1054.0
+offset_top = 176.0
+offset_right = 1468.0
+offset_bottom = 827.0
+alignment = 1
+script = ExtResource("4_kot2p")
+
+[node name="Play" parent="Buttons_Vbox" instance=ExtResource("5_psf1s")]
+layout_mode = 2
+text = "Play"
+
+[node name="Exit" parent="Buttons_Vbox" instance=ExtResource("5_psf1s")]
+layout_mode = 2
+text = "Exit"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.607843, 0.607843, 0.607843, 1)
+layout_mode = 0
+offset_left = 181.0
+offset_top = 345.0
+offset_right = 874.0
+offset_bottom = 825.0
+texture = ExtResource("4_7ekm3")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="TextureRect"]
+layout_mode = 0
+offset_left = 153.0
+offset_top = 186.0
+offset_right = 546.0
+offset_bottom = 283.0
+theme_override_font_sizes/font_size = 30
+text = "REMEMBER:
+You Only have 3 shots"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_i1yn4")
+volume_db = -10.0
+autoplay = true

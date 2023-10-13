@@ -1,0 +1,89 @@
+[gd_scene load_steps=13 format=3 uid="uid://c6lcrvchh4wvh"]
+
+[ext_resource type="Texture2D" uid="uid://07e7gn3j2j46" path="res://Assets/fx/f3_fx_entropicdecay.png" id="1_h63kl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xfu5a"]
+atlas = ExtResource("1_h63kl")
+region = Rect2(204, 714, 102, 102)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cd5jr"]
+atlas = ExtResource("1_h63kl")
+region = Rect2(102, 306, 102, 102)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vu5v1"]
+atlas = ExtResource("1_h63kl")
+region = Rect2(102, 408, 102, 102)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iopnc"]
+atlas = ExtResource("1_h63kl")
+region = Rect2(102, 510, 102, 102)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_05gq7"]
+atlas = ExtResource("1_h63kl")
+region = Rect2(102, 714, 102, 102)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5vpn0"]
+atlas = ExtResource("1_h63kl")
+region = Rect2(102, 816, 102, 102)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1qdn3"]
+atlas = ExtResource("1_h63kl")
+region = Rect2(102, 918, 102, 102)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eknhr"]
+atlas = ExtResource("1_h63kl")
+region = Rect2(0, 918, 102, 102)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gk4ed"]
+atlas = ExtResource("1_h63kl")
+region = Rect2(0, 816, 102, 102)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wr3bs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xfu5a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cd5jr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vu5v1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iopnc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_05gq7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5vpn0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1qdn3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eknhr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gk4ed")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 15.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r1smq"]
+radius = 24.0832
+
+[node name="Area2D" type="Area2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.8, 0.8)
+sprite_frames = SubResource("SpriteFrames_wr3bs")
+animation = &"fly"
+autoplay = "fly"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, -4)
+shape = SubResource("CircleShape2D_r1smq")
